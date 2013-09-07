@@ -670,12 +670,6 @@ var quests = [
             break;
         }
     };
-    this.autoGame = function() {
-        if (channel !== hangchan) {
-	        return false;
-        }
-        setInterval(function(){Hangman.sendAll(quests[Math.floor(Math.random()*beast)])}, 10000);
-    };
     
     this.onHelp = function (src, topic, channel) {
         if (topic === "hangman") {
@@ -844,6 +838,12 @@ var quests = [
         if (sys.isInChannel(src, hangmanchan)) {
             sys.kick(src, hangmanchan);
         }
+    };
+    this.autoGame = function() {
+        if (channel !== hangchan) {
+	        return false;
+        }
+        setInterval(function(){Hangman.sendAll(quests[Math.floor(Math.random()*beast)])}, 10000);
     };
     this.hangmanBan = function (src, commandData) {
         if (commandData === undefined) {
