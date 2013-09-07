@@ -12,6 +12,161 @@ module.exports = function () {
     var answerDelay = 10;
     var maxAnswers = 3;
 
+var quests = [
+        "/start Bulbasaur:pokemon",
+        "/start Ivysaur:pokemon",
+        "/start Venusaur:pokemon",
+        "/start Charmander:pokemon",
+        "/start Charmeleon:pokemon",
+        "/start Charizard:pokemon",
+        "/start Squirtle:pokemon",
+        "/start Wartortle:pokemon",
+        "/start Blastoise:pokemon",
+        "/start Caterpie:pokemon",
+        "/start Metapod:pokemon",
+        "/start Butterfree:pokemon",
+        "/start Weedle:pokemon",
+        "/start Kakuna:pokemon",
+        "/start Beedrill:pokemon",
+        "/start Pidgey:pokemon",
+        "/start Pidgeotto:pokemon",
+        "/start Pidgeot:pokemon",
+        "/start Rattata:pokemon",
+        "/start Raticate:pokemon",
+        "/start Spearow:pokemon",
+        "/start Fearow:pokemon",
+        "/start Ekans:pokemon",
+        "/start Arbok:pokemon",
+        "/start Pikachu:pokemon",
+        "/start Raichu:pokemon",
+        "/start Sandshrew:pokemon",
+        "/start Sandslash:pokemon",
+        "/start Nidoran:pokemon",
+        "/start Nidorina:pokemon",
+        "/start Nidoqueen:pokemon",
+        "/start Nidoran:pokemon",
+        "/start Nidorino:pokemon",
+        "/start Nidoking:pokemon",
+        "/start Clefairy:pokemon",
+        "/start Clefable:pokemon",
+        "/start Vulpix:pokemon",
+        "/start Ninetales:pokemon",
+        "/start Jigglypuff:pokemon",
+        "/start Wigglytuff:pokemon",
+        "/start Zubat:pokemon",
+        "/start Golbat:pokemon",
+        "/start Oddish:pokemon",
+        "/start Gloom:pokemon",
+        "/start Vileplume:pokemon",
+        "/start Paras:pokemon",
+        "/start Parasect:pokemon",
+        "/start Venonat:pokemon",
+        "/start Venomoth:pokemon",
+        "/start Diglett:pokemon",
+        "/start Dugtrio:pokemon",
+        "/start Meowth:pokemon",
+        "/start Persian:pokemon",
+        "/start Psyduck:pokemon",
+        "/start Golduck:pokemon",
+        "/start Mankey:pokemon",
+        "/start Primeape:pokemon",
+        "/start Growlithe:pokemon",
+        "/start Arcanine:pokemon",
+        "/start Poliwag:pokemon",
+        "/start Poliwhirl:pokemon",
+        "/start Poliwrath:pokemon",
+        "/start Abra:pokemon",
+        "/start Kadabra:pokemon",
+        "/start Alakazam:pokemon",
+        "/start Machop:pokemon",
+        "/start Machoke:pokemon",
+        "/start Machamp:pokemon",
+        "/start Bellsprout:pokemon",
+        "/start Weepinbell:pokemon",
+        "/start Victreebel:pokemon",
+        "/start Tentacool:pokemon",
+        "/start Tentacruel:pokemon",
+        "/start Geodude:pokemon",
+        "/start Graveler:pokemon",
+        "/start Golem:pokemon",
+        "/start Ponyta:pokemon",
+        "/start Rapidash:pokemon",
+        "/start Slowpoke:pokemon",
+        "/start Slowbro:pokemon",
+        "/start Magnemite:pokemon",
+        "/start Magneton:pokemon",
+        "/start Farfetch'd:pokemon",
+        "/start Doduo:pokemon",
+        "/start Dodrio:pokemon",
+        "/start Seel:pokemon",
+        "/start Dewgong:pokemon",
+        "/start Grimer:pokemon",
+        "/start Muk:pokemon",
+        "/start Shellder:pokemon",
+        "/start Cloyster:pokemon",
+        "/start Gastly:pokemon",
+        "/start Haunter:pokemon",
+        "/start Gengar:pokemon",
+        "/start Onix:pokemon",
+        "/start Drowzee:pokemon",
+        "/start Hypno:pokemon",
+        "/start Krabby:pokemon",
+        "/start Kingler:pokemon",
+        "/start Voltorb:pokemon",
+        "/start Electrode:pokemon",
+        "/start Exeggcute:pokemon",
+        "/start Exeggutor:pokemon",
+        "/start Cubone:pokemon",
+        "/start Marowak:pokemon",
+        "/start Hitmonlee:pokemon",
+        "/start Hitmonchan:pokemon",
+        "/start Lickitung:pokemon",
+        "/start Koffing:pokemon",
+        "/start Weezing:pokemon",
+        "/start Rhyhorn:pokemon",
+        "/start Rhydon:pokemon",
+        "/start Chansey:pokemon",
+        "/start Tangela:pokemon",
+        "/start Kangaskhan:pokemon",
+        "/start Horsea:pokemon",
+        "/start Seadra:pokemon",
+        "/start Goldeen:pokemon",
+        "/start Seaking:pokemon",
+        "/start Staryu:pokemon",
+        "/start Starmie:pokemon",
+        "/start Mr. Mime:pokemon",
+        "/start Scyther:pokemon",
+        "/start Jynx:pokemon",
+        "/start Electabuzz:pokemon",
+        "/start Magmar:pokemon",
+        "/start Pinsir:pokemon",
+        "/start Tauros:pokemon",
+        "/start Magikarp:pokemon",
+        "/start Gyarados:pokemon",
+        "/start Lapras:pokemon",
+        "/start Ditto:pokemon",
+        "/start Eevee:pokemon",
+        "/start Vaporeon:pokemon",
+        "/start Jolteon:pokemon",
+        "/start Flareon:pokemon",
+        "/start Porygon:pokemon",
+        "/start Omanyte:pokemon",
+        "/start Omastar:pokemon",
+        "/start Kabuto:pokemon",
+        "/start Kabutops:pokemon",
+        "/start Aerodactyl:pokemon",
+        "/start Snorlax:pokemon",
+        "/start Articuno:pokemon",
+        "/start Zapdos:pokemon",
+        "/start Moltres:pokemon",
+        "/start Dratini:pokemon",
+        "/start Dragonair:pokemon",
+        "/start Dragonite:pokemon",
+        "/start Mewtwo:pokemon",
+        "/start Mew:pokemon"
+    ];
+    var beast = quests.length;
+
     var host;
     var hostName;
     var winner;
@@ -515,6 +670,13 @@ module.exports = function () {
             break;
         }
     };
+    this.autoGame = function() {
+        if (channel !== hangchan) {
+	        return false;
+        }
+        setInterval(function(){Hangman.sendAll(quests[Math.floor(Math.random()*beast)])}, 10000);
+    };
+    
     this.onHelp = function (src, topic, channel) {
         if (topic === "hangman") {
             hangman.showCommands(src, channel);
@@ -628,6 +790,11 @@ module.exports = function () {
         if (command === "hangmanban") {
             hangman.hangmanBan(src, commandData);
             return true;
+        }
+
+        if (command === "autogame") {
+	        hangman.autoGame();
+	        return true;
         }
 
         if (command === "hangmanunban") {
